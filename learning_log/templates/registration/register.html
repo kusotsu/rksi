@@ -1,0 +1,6 @@
+{% extends "learning_logs/base.html" %}
+{% load bootstrap4 %}
+{% block title %}Регистрация — Learning Log{% endblock title %}
+{% block content %}
+<div class="form-shell auth-shell"><p class="eyebrow">Новый журнал</p><h1>Регистрация</h1><form method="post" novalidate>{% csrf_token %}{% bootstrap_form form %}{% bootstrap_button "Создать аккаунт" button_type="submit" button_class="btn-primary btn-lg btn-block" %}</form><p class="form-foot">Уже есть аккаунт? <a href="{% url 'users:login' %}">Войти</a></p></div>
+{% endblock content %}

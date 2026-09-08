@@ -30,3 +30,19 @@ services:
         sync: false
       - key: DATABASE_SCHEMA
         value: blog_practice
+  - type: web
+    name: rksi-learning-log
+    runtime: docker
+    plan: free
+    region: frankfurt
+    rootDir: learning_log
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: DJANGO_SECRET_KEY
+        generateValue: true
+      - key: DJANGO_DEBUG
+        value: "False"
+      - key: DATABASE_URL
+        sync: false
+      - key: DATABASE_SCHEMA
+        value: learning_log

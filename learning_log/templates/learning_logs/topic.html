@@ -1,0 +1,19 @@
+{% extends "learning_logs/base.html" %}
+{% block title %}{{ topic.text }} — Learning Log{% endblock title %}
+{% block content %}
+<a class="back-link" href="{% url 'learning_logs:topics' %}">← Все темы</a>
+<div class="page-heading d-flex flex-column flex-sm-row justify-content-between align-items-sm-end">
+  <div><p class="eyebrow">Учебная тема</p><h1>{{ topic.text }}</h1></div>
+  <a class="btn btn-primary mt-3 mt-sm-0" href="{% url 'learning_logs:new_entry' topic.id %}">+ Новая запись</a>
+</div>
+<div class="entries-list">
+  {% for entry in entries %}
+    <article class="entry-card">
+      <header><time datetime="{{ entry.date_added|date:'c' }}">{{ entry.date_added|date:'d.m.Y · H:i' }}</time><a href="{% url 'learning_logs:edit_entry' entry.id %}">Редактировать</a></header>
+      <div class="entry-text">{{ entry.text|linebreaks }}</div>
+    </article>
+  {% empty %}
+    <div class="empty-state"><div class="empty-icon">✎</div><h2>Записей пока нет</h2><p>Добавьте первую мысль по этой теме.</p></div>
+  {% endfor %}
+</div>
+{% endblock content %}

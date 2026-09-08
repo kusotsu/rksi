@@ -1,0 +1,25 @@
+{% extends "learning_logs/base.html" %}
+{% block title %}Мои темы — Learning Log{% endblock title %}
+{% block content %}
+<div class="page-heading d-flex flex-column flex-sm-row justify-content-between align-items-sm-center">
+  <div><p class="eyebrow">Личная библиотека</p><h1>Мои темы</h1></div>
+  <a class="btn btn-primary mt-3 mt-sm-0" href="{% url 'learning_logs:new_topic' %}">+ Новая тема</a>
+</div>
+<div class="topic-grid">
+  {% for topic in topics %}
+    <a class="topic-card" href="{% url 'learning_logs:topic' topic.id %}">
+      <span class="topic-number">{{ forloop.counter|stringformat:"02d" }}</span>
+      <h2>{{ topic.text }}</h2>
+      <p>{{ topic.entry_set.count }} записей</p>
+      <span class="topic-arrow" aria-hidden="true">→</span>
+    </a>
+  {% empty %}
+    <div class="empty-state">
+      <div class="empty-icon">✦</div>
+      <h2>Тем пока нет</h2>
+      <p>Создайте первую тему и добавьте к ней то, что вы узнали.</p>
+      <a class="btn btn-primary" href="{% url 'learning_logs:new_topic' %}">Создать тему</a>
+    </div>
+  {% endfor %}
+</div>
+{% endblock content %}

@@ -1,0 +1,6 @@
+{% extends "learning_logs/base.html" %}
+{% load bootstrap4 %}
+{% block title %}Новая тема — Learning Log{% endblock title %}
+{% block content %}
+<div class="form-shell"><p class="eyebrow">Новая глава</p><h1>Добавить тему</h1><form method="post" novalidate>{% csrf_token %}{% bootstrap_form form %}{% bootstrap_button "Сохранить тему" button_type="submit" button_class="btn-primary btn-lg" %}<a class="btn btn-link" href="{% url 'learning_logs:topics' %}">Отмена</a></form></div>
+{% endblock content %}

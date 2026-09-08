@@ -1,0 +1,6 @@
+{% extends "learning_logs/base.html" %}
+{% load bootstrap4 %}
+{% block title %}{{ heading }} — Learning Log{% endblock title %}
+{% block content %}
+<div class="form-shell"><a class="back-link" href="{% url 'learning_logs:topic' topic.id %}">← {{ topic.text }}</a><p class="eyebrow mt-4">Учебная заметка</p><h1>{{ heading }}</h1><form method="post" novalidate>{% csrf_token %}{% bootstrap_form form %}{% bootstrap_button "Сохранить запись" button_type="submit" button_class="btn-primary btn-lg" %}<a class="btn btn-link" href="{% url 'learning_logs:topic' topic.id %}">Отмена</a></form></div>
+{% endblock content %}

@@ -4,6 +4,7 @@
 
 | Работа | Проект | Описание |
 | --- | --- | --- |
+| Learning Log | [learning_log](learning_log/) | Личный журнал тем и учебных записей на Django |
 | 1 | [practice-01-task-manager](practice-01-task-manager/) | Менеджер личных задач на Django |
 | 2 | [practice-02-blog](practice-02-blog/) | Публичный блог с авторскими публикациями на Django |
 
