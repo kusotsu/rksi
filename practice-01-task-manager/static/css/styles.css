@@ -1,0 +1,65 @@
+:root {
+  --ink: #172033;
+  --muted: #687086;
+  --paper: #ffffff;
+  --canvas: #f3f6fb;
+  --primary: #3157d5;
+  --primary-dark: #233fa4;
+  --line: #dfe5f1;
+}
+
+body {
+  min-height: 100vh;
+  color: var(--ink);
+  background: linear-gradient(180deg, #eef3ff 0, var(--canvas) 260px);
+  font-size: 1rem;
+}
+
+.app-navbar { background: #172033; box-shadow: 0 4px 20px rgba(23, 32, 51, .16); }
+.navbar-brand { letter-spacing: -.02em; }
+.eyebrow { color: var(--primary); font-size: .78rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+
+.welcome-panel,
+.form-card,
+.empty-state,
+.task-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  box-shadow: 0 12px 36px rgba(47, 64, 105, .08);
+}
+
+.welcome-panel { max-width: 860px; margin: 5vh auto 0; border-top: 5px solid var(--primary); }
+.welcome-panel .lead { max-width: 680px; }
+.btn-primary { background: var(--primary); border-color: var(--primary); }
+.btn-primary:hover, .btn-primary:focus { background: var(--primary-dark); border-color: var(--primary-dark); }
+
+.task-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.task-card { padding: 1.25rem; border-left: 5px solid var(--primary); }
+.task-card.task-overdue { border-left-color: #c53030; background: #fffafa; }
+.task-card.task-completed { border-left-color: #748094; background: #f8fafc; }
+.task-completed .task-title { text-decoration: line-through; color: var(--muted); }
+.task-description { overflow-wrap: anywhere; }
+.task-meta { display: flex; flex-wrap: wrap; gap: .5rem 1rem; font-size: .9rem; }
+.status-pill { font-weight: 700; }
+.status-done { color: #52606d; }
+.status-active { color: #207344; }
+.task-actions { display: flex; flex-wrap: wrap; gap: .5rem; }
+.task-actions form { margin: 0; }
+
+.form-shell { max-width: 680px; }
+.form-card { padding: 1.5rem; }
+.empty-icon { width: 3.5rem; height: 3.5rem; margin: 0 auto 1rem; display: grid; place-items: center; border-radius: 50%; color: #fff; background: var(--primary); font-size: 1.6rem; }
+.invalid-feedback { font-size: .9rem; }
+
+@media (max-width: 767.98px) {
+  .task-grid { grid-template-columns: 1fr; }
+  .display-4 { font-size: 2.25rem; }
+  .navbar-nav .btn { margin-top: .5rem; }
+}
+
+@media (max-width: 420px) {
+  .task-actions, .task-actions form, .task-actions .btn { width: 100%; }
+  .task-card { padding: 1rem; }
+}
+

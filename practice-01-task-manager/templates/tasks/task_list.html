@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load task_tags %}
+
+{% block title %}Мои задачи{% endblock title %}
+
+{% block content %}
+<div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center mb-4">
+  <div>
+    <p class="eyebrow mb-1">Рабочий список</p>
+    <h1 class="h2 mb-0">Мои задачи</h1>
+  </div>
+  <a class="btn btn-primary mt-3 mt-sm-0" href="{% url 'tasks:new' %}">＋ Новая задача</a>
+</div>
+
+{% if tasks %}
+  <div class="task-grid">
+    {% for task in tasks %}
+      {% with overdue=task|is_overdue %}
+      <article class="task-card {% if task.completed %}task-completed{% elif overdue %}task-overdue{% endif %}">
+        <div class="d-flex justify-content-between align-items-start">
+          <h2 class="h5 task-title mb-2">{{ task.title }}</h2>
+          {% if task.priority == 'high' %}
+            <span class="badge badge-danger">↑ Высокий</span>
+          {% elif task.priority == 'low' %}
+            <span class="badge badge-secondary">↓ Низкий</span>
+          {% else %}
+            <span class="badge badge-info">• Обычный</span>
+          {% endif %}
+        </div>
+
+        {% if task.description %}<p class="task-description text-muted">{{ task.description|linebreaksbr }}</p>{% endif %}
+
+        <div class="task-meta mb-3">
+          {% if task.completed %}
+            <span class="status-pill status-done">✓ Выполнена</span>
+          {% else %}
+            <span class="status-pill status-active">○ В работе</span>
+          {% endif %}
+          {% if task.due_date %}
+            <span class="{% if overdue %}text-danger font-weight-bold{% endif %}">
+              {% if overdue %}⚠ Просрочено:{% else %}Срок:{% endif %} {{ task.due_date|date:"d.m.Y H:i" }}
+            </span>
+          {% else %}
+            <span class="text-muted">Без срока</span>
+          {% endif %}
+        </div>
+
+        <div class="task-actions">
+          <form method="post" action="{% url 'tasks:toggle' task.id %}">
+            {% csrf_token %}
+            <button class="btn btn-sm {% if task.completed %}btn-outline-secondary{% else %}btn-success{% endif %}" type="submit">
+              {% if task.completed %}Вернуть в работу{% else %}Отметить выполненной{% endif %}
+            </button>
+          </form>
+          <a class="btn btn-sm btn-outline-primary" href="{% url 'tasks:edit' task.id %}">Изменить</a>
+          <a class="btn btn-sm btn-outline-danger" href="{% url 'tasks:delete' task.id %}">Удалить</a>
+        </div>
+      </article>
+      {% endwith %}
+    {% endfor %}
+  </div>
+{% else %}
+  <div class="empty-state text-center p-5">
+    <div class="empty-icon" aria-hidden="true">✓</div>
+    <h2 class="h4">Список пока пуст</h2>
+    <p class="text-muted">Создайте первую задачу и укажите, когда её нужно выполнить.</p>
+    <a class="btn btn-primary" href="{% url 'tasks:new' %}">Создать задачу</a>
+  </div>
+{% endif %}
+{% endblock content %}
+

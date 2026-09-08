@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+
+{% block title %}Вход{% endblock title %}
+
+{% block content %}
+<div class="form-shell mx-auto">
+  <p class="eyebrow mb-1">С возвращением</p>
+  <h1 class="h2 mb-4">Вход</h1>
+  <form method="post" novalidate class="form-card">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% if next %}<input type="hidden" name="next" value="{{ next }}">{% endif %}
+    {% bootstrap_button "Войти" button_type="submit" button_class="btn-primary btn-block" %}
+    <p class="text-muted text-center mt-3 mb-0">Нет аккаунта? <a href="{% url 'users:register' %}">Зарегистрироваться</a></p>
+  </form>
+</div>
+{% endblock content %}
+
