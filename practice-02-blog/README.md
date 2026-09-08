@@ -73,6 +73,8 @@ python manage.py createsuperuser
 
 ## Развёртывание
 
+Рабочая версия: <https://rksi-blog.onrender.com/>
+
 Для Render выберите:
 
 - репозиторий `kusotsu/rksi`, ветку `main`;
