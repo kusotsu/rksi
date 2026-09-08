@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+
+{% block title %}{{ heading }}{% endblock title %}
+
+{% block content %}
+<div class="form-shell mx-auto">
+  <p class="issue-label mb-2">Редакция</p>
+  <h1 class="h2 mb-4">{{ heading }}</h1>
+  <form method="post" novalidate class="form-card">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <div class="d-flex flex-column flex-sm-row mt-4">
+      {% bootstrap_button "Опубликовать" button_type="submit" button_class="btn-ink" %}
+      <a class="btn btn-outline-secondary ml-sm-2 mt-2 mt-sm-0" href="{% url 'blogs:index' %}">Отмена</a>
+    </div>
+  </form>
+</div>
+{% endblock content %}
+

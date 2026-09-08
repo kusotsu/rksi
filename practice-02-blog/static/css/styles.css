@@ -1,0 +1,49 @@
+:root {
+  --ink: #1e2321;
+  --paper: #fffdf8;
+  --canvas: #f2eee5;
+  --accent: #b4482f;
+  --line: #d9d1c3;
+}
+
+body {
+  min-height: 100vh;
+  color: var(--ink);
+  background: var(--canvas);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.05rem;
+}
+
+.blog-navbar { background: var(--ink); }
+.navbar-brand { font-size: 1.35rem; font-weight: 700; letter-spacing: -.02em; }
+.navbar, .btn, .post-meta, .issue-label, .form-control, label, .alert { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+.issue-label { color: var(--accent); font-size: .78rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+.journal-header { border-bottom: 3px double var(--ink); padding-bottom: 1.5rem; }
+.journal-header h1, .article-page h1 { font-weight: 700; letter-spacing: -.04em; }
+.btn-ink { color: #fff; background: var(--ink); border-color: var(--ink); }
+.btn-ink:hover, .btn-ink:focus { color: #fff; background: var(--accent); border-color: var(--accent); }
+
+.post-list { background: var(--paper); border: 1px solid var(--line); }
+.post-card { display: grid; grid-template-columns: 5rem minmax(0, 1fr); gap: 1rem; padding: 2rem; border-bottom: 1px solid var(--line); }
+.post-card:last-child { border-bottom: 0; }
+.post-number { color: var(--accent); font: 700 2rem/1 system-ui, sans-serif; }
+.post-card h2 { font-size: 1.8rem; line-height: 1.15; }
+.post-card h2 a { color: var(--ink); text-decoration: none; }
+.post-card h2 a:hover { color: var(--accent); }
+.post-meta { color: #69645c; font-size: .86rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+.post-excerpt, .article-text { line-height: 1.8; overflow-wrap: anywhere; word-break: break-word; }
+.edit-link { color: var(--accent); }
+.article-page { max-width: 780px; padding: 2rem; background: var(--paper); border-top: 5px solid var(--accent); }
+.article-footer { border-top: 1px solid var(--line); }
+.form-shell { max-width: 760px; }
+.form-card, .empty-state { padding: 2rem; background: var(--paper); border: 1px solid var(--line); }
+.empty-mark { color: var(--accent); font-size: 2.5rem; }
+.form-control:focus { border-color: var(--accent); box-shadow: 0 0 0 .2rem rgba(180, 72, 47, .18); }
+
+@media (max-width: 575.98px) {
+  .display-4 { font-size: 2.3rem; }
+  .post-card { grid-template-columns: 1fr; padding: 1.25rem; }
+  .post-number { font-size: 1.2rem; }
+  .article-page, .form-card { padding: 1.25rem; }
+}
+

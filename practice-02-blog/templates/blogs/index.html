@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Открытые страницы{% endblock title %}
+
+{% block content %}
+<header class="journal-header d-flex flex-column flex-sm-row justify-content-between align-items-sm-end mb-5">
+  <div>
+    <p class="issue-label mb-2">Учебный журнал · свежие записи</p>
+    <h1 class="display-4 mb-2">Открытые страницы</h1>
+    <p class="lead text-muted mb-0">Мысли, наблюдения и небольшие истории авторов.</p>
+  </div>
+  {% if user.is_authenticated %}<a class="btn btn-ink mt-3 mt-sm-0" href="{% url 'blogs:new_post' %}">＋ Новая публикация</a>{% endif %}
+</header>
+
+{% if posts %}
+  <div class="post-list">
+    {% for post in posts %}
+      <article class="post-card">
+        <div class="post-number" aria-hidden="true">{{ forloop.counter|stringformat:"02d" }}</div>
+        <div class="post-body">
+          <p class="post-meta mb-2">{{ post.owner.username }} · {{ post.date_added|date:"d.m.Y, H:i" }}</p>
+          <h2><a href="{% url 'blogs:post_detail' post.id %}">{{ post.title }}</a></h2>
+          <div class="post-excerpt">{{ post.text|truncatewords:45|linebreaksbr }}</div>
+          <div class="mt-3">
+            <a href="{% url 'blogs:post_detail' post.id %}">Читать полностью →</a>
+            {% if post.owner == user %}<a class="edit-link ml-3" href="{% url 'blogs:edit_post' post.id %}">Редактировать</a>{% endif %}
+          </div>
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+{% else %}
+  <section class="empty-state text-center">
+    <div class="empty-mark" aria-hidden="true">✦</div>
+    <h2 class="h4">Публикаций пока нет</h2>
+    <p class="text-muted">Первая история обязательно появится здесь.</p>
+    {% if user.is_authenticated %}<a class="btn btn-ink" href="{% url 'blogs:new_post' %}">Написать первую публикацию</a>{% endif %}
+  </section>
+{% endif %}
+{% endblock content %}
+

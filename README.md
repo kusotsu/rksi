@@ -5,6 +5,7 @@
 | Работа | Проект | Описание |
 | --- | --- | --- |
 | 1 | [practice-01-task-manager](practice-01-task-manager/) | Менеджер личных задач на Django |
+| 2 | [practice-02-blog](practice-02-blog/) | Публичный блог с авторскими публикациями на Django |
 
 Развёрнутая практическая работа №1: <https://rksi-task-manager.onrender.com/>
 

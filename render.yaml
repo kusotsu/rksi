@@ -14,3 +14,19 @@ services:
         value: "False"
       - key: DATABASE_URL
         sync: false
+  - type: web
+    name: rksi-blog
+    runtime: docker
+    plan: free
+    region: frankfurt
+    rootDir: practice-02-blog
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: DJANGO_SECRET_KEY
+        generateValue: true
+      - key: DJANGO_DEBUG
+        value: "False"
+      - key: DATABASE_URL
+        sync: false
+      - key: DATABASE_SCHEMA
+        value: blog_practice

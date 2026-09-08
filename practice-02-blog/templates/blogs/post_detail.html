@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}{{ post.title }}{% endblock title %}
+
+{% block content %}
+<article class="article-page mx-auto">
+  <p class="post-meta">{{ post.owner.username }} · {{ post.date_added|date:"d.m.Y, H:i" }}</p>
+  <h1 class="display-4">{{ post.title }}</h1>
+  <div class="article-text mt-4">{{ post.text|linebreaks }}</div>
+  <div class="article-footer mt-5 pt-4">
+    <a href="{% url 'blogs:index' %}">← Все публикации</a>
+    {% if post.owner == user %}<a class="btn btn-outline-dark ml-3" href="{% url 'blogs:edit_post' post.id %}">Редактировать</a>{% endif %}
+  </div>
+</article>
+{% endblock content %}
+
