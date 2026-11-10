@@ -73,7 +73,7 @@ python manage.py createsuperuser
 
 ## Развёртывание
 
-Рабочая версия: <https://rksi-blog.onrender.com/>
+Рабочая версия: <https://rksi-blog-4u8g.onrender.com/>
 
 Для Render выберите:
 
